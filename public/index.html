@@ -8,13 +8,43 @@
     html, body { height: 100%; margin: 0; }
     body {
       display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background: #16a34a; color: #ffffff;
+      background: linear-gradient(to bottom, #1e88e5 0%, #64b5f6 55%, #e3f2fd 100%);
+      color: #ffffff;
     }
-    h1 { font-size: clamp(2.5rem, 8vw, 6rem); margin: 0; }
+    h1 {
+      position: relative; z-index: 1;
+      font-size: clamp(2.5rem, 8vw, 6rem); margin: 0;
+      text-shadow: 0 4px 16px rgba(13, 71, 161, 0.45);
+    }
+    .cloud {
+      position: absolute; background: #fff; border-radius: 999px;
+      opacity: 0.9; animation: drift linear infinite;
+    }
+    .cloud::before, .cloud::after {
+      content: ""; position: absolute; background: #fff; border-radius: 50%;
+    }
+    .cloud::before { width: 50%; height: 180%; top: -90%; left: 15%; }
+    .cloud::after  { width: 35%; height: 140%; top: -60%; right: 15%; }
+    .c1 { width: 200px; height: 60px; top: 15%; animation-duration: 60s; animation-delay: -10s; }
+    .c2 { width: 140px; height: 42px; top: 35%; animation-duration: 45s; animation-delay: -30s; opacity: 0.75; }
+    .c3 { width: 260px; height: 76px; top: 70%; animation-duration: 75s; animation-delay: -50s; }
+    .c4 { width: 120px; height: 36px; top: 55%; animation-duration: 50s; animation-delay: -5s; opacity: 0.7; }
+    @keyframes drift {
+      from { left: -300px; }
+      to   { left: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cloud { animation-play-state: paused; }
+    }
   </style>
 </head>
 <body>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="cloud c4"></div>
   <h1>HELLO WORLD</h1>
 </body>
 </html>
